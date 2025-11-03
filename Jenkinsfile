@@ -4,8 +4,8 @@ pipeline {
     environment { 
         PROJECT_ID = 'modern-spirit-475318-r3' 
         GCP_CREDENTIALS = credentials('gcp-keyfile') // Add this in Jenkins credentials 
-        FRONTEND_IMAGE = 'gcr.io/modern-spirit-475318-r3/frontend'
-        BACKEND_IMAGE = 'gcr.io/modern-spirit-475318-r3/backend'
+        FRONTEND_IMAGE = 'us-docker.pkg.dev/modern-spirit-475318-r3/frontend'
+        BACKEND_IMAGE = 'us-docker.pkg.dev/modern-spirit-475318-r3/backend'
     } 
  
     stages { 
