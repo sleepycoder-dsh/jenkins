@@ -11,7 +11,9 @@ pipeline {
     stages { 
         stage('Checkout') { 
             steps { 
-                git branch: 'main', url: 'https://github.com/sleepycoder-dsh/FrondEndDevelopment' 
+                dir('frontend') {
+                    git branch: 'main', url: 'https://github.com/sleepycoder-dsh/FrondEndDevelopment'
+                }
                 dir('backend') { 
                     git branch: 'main', url: 'https://github.com/sleepycoder-dsh/BackendDevelopment' 
                 } 
