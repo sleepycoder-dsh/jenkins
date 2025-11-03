@@ -3,7 +3,7 @@ pipeline {
  
     environment { 
         PROJECT_ID = 'modern-spirit-475318-r3' 
-        GCP_CREDENTIALS = credentials('gcp-service-account') // Add this in Jenkins credentials 
+        GCP_CREDENTIALS = credentials('gcp-keyfile') // Add this in Jenkins credentials 
         FRONTEND_IMAGE = "gcr.io/${modern-spirit-475318-r3}/frontend" 
         BACKEND_IMAGE = "gcr.io/${modern-spirit-475318-r3}/backend" 
     } 
