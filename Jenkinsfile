@@ -31,8 +31,11 @@ pipeline {
         stage('Build Backend Docker Image') { 
             steps { 
                 dir('backend') { 
-                    sh './mvnw clean package -DskipTests' 
-                    sh 'docker build -t $BACKEND_IMAGE:latest .' 
+                 sh '''
+                    chmod +x mvnw
+                    ./mvnw clean package -DskipTests
+                    docker build -t $BACKEND_IMAGE:latest .
+                   '''
                 } 
             } 
         } 
