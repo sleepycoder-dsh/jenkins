@@ -60,7 +60,8 @@ pipeline {
 'GOOGLE_APPLICATION_CREDENTIALS')]) { 
                     sh ''' 
                     gcloud auth activate-service-account --key-file=$GOOGLE_APPLICATION_CREDENTIALS 
-                    gcloud container clusters get-credentials webapp-cluster --zone us-central1-c --project $PROJECT_ID 
+                    gcloud container clusters get-credentials webapp-cluster --zone us-central1-c --project $PROJECT_ID
+                    git clone https://github.com/sleepycoder-dsh/k8s.git
                     kubectl apply -f k8s/backend-deployment.yaml 
                     kubectl apply -f k8s/backend-service.yaml 
                     kubectl apply -f k8s/frontend-deployment.yaml 
