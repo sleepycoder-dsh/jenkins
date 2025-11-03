@@ -4,8 +4,8 @@ pipeline {
     environment { 
         PROJECT_ID = 'modern-spirit-475318-r3' 
         GCP_CREDENTIALS = credentials('gcp-keyfile') // Add this in Jenkins credentials 
-        FRONTEND_IMAGE = 'us-docker.pkg.dev/modern-spirit-475318-r3/frontend'
-        BACKEND_IMAGE = 'us-docker.pkg.dev/modern-spirit-475318-r3/backend'
+        FRONTEND_IMAGE = 'us-docker.pkg.dev/modern-spirit-475318-r3/bookhive-repo/frontend'
+        BACKEND_IMAGE = 'us-docker.pkg.dev/modern-spirit-475318-r3/bookhive-repo/backend'
     } 
  
     stages { 
@@ -40,13 +40,13 @@ pipeline {
             } 
         } 
  
-        stage('Push to GCR') { 
+        stage('Push to Artifact Registry') { 
             steps { 
                 withCredentials([file(credentialsId: 'gcp-keyfile', variable: 
 'GOOGLE_APPLICATION_CREDENTIALS')]) { 
                     sh ''' 
                     gcloud auth activate-service-account --key-file=$GOOGLE_APPLICATION_CREDENTIALS 
-                    gcloud auth configure-docker 
+                    gcloud auth configure-docker us-docker.pkg.dev -q
                     docker push $FRONTEND_IMAGE:latest 
                     docker push $BACKEND_IMAGE:latest 
                     ''' 
