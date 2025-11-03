@@ -4,8 +4,8 @@ pipeline {
     environment { 
         PROJECT_ID = 'modern-spirit-475318-r3' 
         GCP_CREDENTIALS = credentials('gcp-keyfile') // Add this in Jenkins credentials 
-        FRONTEND_IMAGE = "gcr.io/${modern-spirit-475318-r3}/frontend" 
-        BACKEND_IMAGE = "gcr.io/${modern-spirit-475318-r3}/backend" 
+        FRONTEND_IMAGE = 'gcr.io/modern-spirit-475318-r3/frontend'
+        BACKEND_IMAGE = 'gcr.io/modern-spirit-475318-r3/backend'
     } 
  
     stages { 
@@ -55,7 +55,7 @@ pipeline {
 'GOOGLE_APPLICATION_CREDENTIALS')]) { 
                     sh ''' 
                     gcloud auth activate-service-account --key-file=$GOOGLE_APPLICATION_CREDENTIALS 
-                    gcloud container clusters get-credentials your-cluster-name --zone your-zone --project $PROJECT_ID 
+                    gcloud container clusters get-credentials webapp-cluster --zone us-central1-c --project $PROJECT_ID 
                     kubectl apply -f k8s/backend-deployment.yaml 
                     kubectl apply -f k8s/backend-service.yaml 
                     kubectl apply -f k8s/frontend-deployment.yaml 
